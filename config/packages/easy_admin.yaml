@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\Forum\Message
+        - App\Entity\Forum\Tag
+        - App\Entity\Forum\Topic
+        - App\Entity\Auth\Grade
+        - App\Entity\Auth\User

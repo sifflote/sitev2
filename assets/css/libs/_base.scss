@@ -1,0 +1,26 @@
+$fonce: #3f4750;
+$clair: #32c383;
+$blanc: #FFF8F9;
+
+.btn-light {
+  color: $fonce;
+  background-color: $clair;
+  border-color: $clair;
+  &:hover {
+    $color: $blanc;
+
+  }
+}
+.btn-fonce {
+  color: $clair;
+  background-color: $fonce;
+  border-color: $fonce;
+  &:hover {
+    color: $blanc;
+  }
+}
+
+.nav-link{
+  color: $fonce !important;
+  font-weight: 700;
+}

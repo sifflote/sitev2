@@ -1,0 +1,4 @@
+function mytheme_preprocess_page_title(&$variables) {
+  $variables['url'] = $_SERVER['REQUEST_URI'];
+  $variables['#cache']['contexts'][] = 'url.path';
+}

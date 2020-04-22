@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+{% block stylesheets %}
+        {{ parent() }}
+    <style>
+        {% for tag in tags %}
+        .a-color-tag-{{ tag.id }}>a:hover{
+            color: {{ tag.color }};
+            font-weight: bold;
+        }
+        .text-color-tag-{{ tag.id }}>a{
+            color: {{ tag.color }};
+        !important;
+        }
+        {%  for t in tag.children %}
+        .text-color-tag-{{ t.id }}>a:hover{
+            font-weight: bold;
+            color: {{ t.color }}
+        }
+        .text-color-tag-{{ t.id }}>a{
+            color: {{ t.color }};
+            !important;
+        }
+        {% endfor %}
+        {% endfor %}
+    </style>
+{% endblock %}
+{% block body %}
+    <header class="Hero">
+        <div class="container welcome">
+            <button id="close" class="btn btn-link Hero-close"><i class="far fa-times-circle"></i></button>
+            <div class="container-middle">
+                <h2 class="Hero-title">Bienvenue {%  if app.user %}{{  app.user.username }}{% endif %}</h2>
+                    <div class="Hero-subtitle">Forum en developement</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="menu-left">
+                <ul>
+                    <li class="item-newTopic">
+                        <a href="{{ path('forum_new') }}" class="btn-primary btn">Nouveau sujet</a>
+                    </li>
+                    <li class="item-allDiscussion{% if app.request.pathInfo == path('forum') %} active color-all-tag{% endif %}">
+                        <a href="{{ path('forum') }}">
+                            <i class="far fa-comments"></i>&nbsp;Tous les sujets
+                        </a>
+                    </li>
+                    <li class="item-tags">
+                        <a href="#">
+                            <i class="fas fa-border-all"></i>&nbsp; Tags
+                        </a>
+                    </li>
+                    {% for tag in tags %}
+                        <li class="tags item-tags a-color-tag-{{ tag.id }}{% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) %} active text-color-tag-{{ tag.id}}{% endif %}">
+                            <a href="{{ path('forum_tag', {'slug':tag.slug, 'id':tag.id}) }}" class="{% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) %}text-color-tag-{{ tag.id }}{% else %}color-tag-{{ tag.id }}{% endif %}">{% if tag.svg == 1 %}<svg fill="{{ tag.color }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" class="svg"><path d="{{ tag.icon }}"/></svg>{% else %}<span style="color:{{ tag.color }};"><i class="{{ tag.icon }}"></i></span>&nbsp;{% endif %}{{ tag.name }}
+                            </a>
+                            {% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) or parent == tag.id%}
+                            <ul class="no-ul">
+                                {% for t in tag.children %}
+                                    <li class="tags item-tags text-color-tag-{{ t.id }}{% if app.request.pathInfo == path('forum_tag', {'slug':t.slug, 'id':t.id}) %} active{% endif %}">
+                                        <a href="{{ path('forum_tag', {'slug':t.slug, 'id':t.id}) }}">
+                                            {{ t.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Contenu -->
+            <main class="content">
+                {% for topic in topics %}
+                    {% include('forum/_topic.html.twig') %}
+                {% endfor %}
+            </main>
+        </div>
+
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+    $(function(){
+        $('#close').click(function(){
+            $('.welcome').hide();
+        });
+    });
+</script>
+{% endblock %}
