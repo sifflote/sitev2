@@ -3,8 +3,8 @@
 
 namespace App\Twig;
 
-use App\Core\Twig\CacheExtension\CacheableInterface;
-use App\Core\Twig\CacheExtension\CacheTokenParser;
+use App\Twig\CacheExtension\CacheableInterface;
+use App\Twig\CacheExtension\CacheTokenParser;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\CacheItem;
 use Twig\Extension\AbstractExtension;
