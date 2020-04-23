@@ -6,6 +6,7 @@
 */
 
 //@import "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 body {
   font-family: 'Roboto', sans-serif;
   background: #fafafa;
@@ -51,6 +52,10 @@ a:focus {
   border: none;
 }
 
+.lien-actif {
+  color: $blanc !important;
+}
+
 .line {
   width: 100%;
   height: 1px;
@@ -58,89 +63,124 @@ a:focus {
   margin: 40px 0;
 }
 
+i,
+span {
+  display: inline-block;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+/*  padding: 20px;*/
+  min-height: 100vh;
+  transition: all 0.3s;
+
+}
+#body{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.titre {
+  color: $fonce;
+  font-size: larger;
+  display: inline-block;
+  margin: 0 auto;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
 #sidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: -250px;
-  height: 100vh;
-  z-index: 999;
+  min-width: 200px;
+  max-width: 200px;
   background: $fonce;
-  color: $blanc;
+  color: $clair;
   transition: all 0.3s;
-  overflow-y: scroll;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar.active {
-  left: 0;
-}
-
-#dismiss {
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
+  min-width: 72px;
+  max-width: 72px;
   text-align: center;
-  background: $fonce;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
 }
 
-#dismiss:hover {
-  background: $blanc;
-  color: $clair;
-}
-
-.overlay {
+#sidebar.active .sidebar-header h3,
+#sidebar.active .CTAs {
   display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 998;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
 }
-.overlay.active {
+
+#sidebar.active .sidebar-header strong {
   display: block;
-  opacity: 1;
+}
+
+#sidebar ul li a {
+  text-align: left;
+}
+
+#sidebar.active ul li a {
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+#sidebar.active ul li a i {
+  margin-right: 0;
+  display: block;
+  font-size: 1.8em;
+  margin-bottom: 5px;
+}
+
+#sidebar.active ul ul a {
+  padding: 10px !important;
+}
+
+#sidebar.active .dropdown-toggle::after {
+  top: auto;
+  bottom: 10px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
 }
 
 #sidebar .sidebar-header {
   padding: 10px;
-  background: $clair;
-  color: $fonce;
-  font-weight: bold;
+  background: $fonce;
 }
 
+#sidebar .sidebar-header strong {
+  display: none;
+  font-size: 1.8em;
+}
 
 #sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #2b333c;
+  /*padding: 10px 0;*/
+  border-bottom: 1px solid #292a2d;
 }
-
-
 
 #sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
   display: block;
-  border-top: 1px solid hsla(0,0%,100%,.05);
-  border-bottom: 1px solid #2b333c;
 }
 
 #sidebar ul li a:hover {
-  color: $clair;
-  background: lighten($fonce, 10%);
+  color: $fonce;
+  background: $clair;
+}
+
+#sidebar ul li a i {
+  margin-right: 10px;
 }
 
 #sidebar ul li.active>a,
@@ -164,7 +204,7 @@ a[data-toggle="collapse"] {
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: $clair;
+  background: $fonce;
 }
 
 ul.CTAs {
@@ -180,37 +220,65 @@ ul.CTAs a {
 }
 
 a.download {
-  background: $blanc;
-  color: $clair;
+  background: $clair;
+  color: $fonce;
 }
 
 a.article,
 a.article:hover {
-  background: $clair !important;
-  color: $blanc !important;
+  background: $fonce !important;
+  color: $clair !important;
 }
 
 /* ---------------------------------------------------
-    CONTENT STYLE
+    MEDIAQUERIES
 ----------------------------------------------------- */
 
-#content {
-  width: 100%;
-/*  padding: 20px;*/
-  min-height: 100vh;
-  transition: all 0.3s;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-#body{
-  width: 95%;
-  margin: 0 auto;
-}
-
-.titre {
-  color: $fonce;
-  font-size: larger;
-  display: inline-block;
-  margin: 0 auto;
+@media (max-width: 768px) {
+  #sidebar {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    margin-left: -80px !important;
+  }
+  .dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+  #sidebar.active {
+    margin-left: 0 !important;
+  }
+  #sidebar .sidebar-header h3,
+  #sidebar .CTAs {
+    display: none;
+  }
+  #sidebar .sidebar-header strong {
+    display: block;
+  }
+  #sidebar ul li a {
+    padding: 20px 10px;
+  }
+  #sidebar ul li a span {
+    font-size: 0.85em;
+  }
+  #sidebar ul li a i {
+    margin-right: 0;
+    display: block;
+  }
+  #sidebar ul ul a {
+    padding: 10px !important;
+  }
+  #sidebar ul li a i {
+    font-size: 1.3em;
+  }
+  #sidebar {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
 }

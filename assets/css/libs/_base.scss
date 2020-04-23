@@ -22,5 +22,8 @@ $blanc: #FFF8F9;
 
 .nav-link{
   color: $fonce !important;
-  font-weight: 700;
+  font-weight: 900;
+  &:hover{
+    color: $blanc !important;
+  }
 }
