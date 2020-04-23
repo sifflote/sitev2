@@ -37,6 +37,9 @@ security:
                 path: logout
                 # La route sur laquelle doit etre rediriger l'utilisateur apres une deconnexion
                 target: index
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2592000 #30 days in second par défaut 1 an
     role_hierarchy:
         ROLE_USER:       ROLE_USER
         ROLE_ADMIN:     [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
