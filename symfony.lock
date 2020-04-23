@@ -121,6 +121,9 @@
     "erusev/parsedown": {
         "version": "1.7.4"
     },
+    "jdenticon/jdenticon": {
+        "version": "1.0.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },

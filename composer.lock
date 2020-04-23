@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "955540882a1f41fdd32e6ca895f17568",
+    "content-hash": "2411f9a3d0bd8a785e3ff7fbeccb050d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1337,6 +1337,50 @@
                 "parser"
             ],
             "time": "2019-12-30T22:54:17+00:00"
+        },
+        {
+            "name": "jdenticon/jdenticon",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmester/jdenticon-php.git",
+                "reference": "03ac5eb042295f744b4a44c544601b9df47d454e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmester/jdenticon-php/zipball/03ac5eb042295f744b4a44c544601b9df47d454e",
+                "reference": "03ac5eb042295f744b4a44c544601b9df47d454e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jdenticon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Mester Pirttijärvi"
+                }
+            ],
+            "description": "Render PNG and SVG identicons.",
+            "homepage": "https://jdenticon.com/",
+            "keywords": [
+                "avatar",
+                "identicon",
+                "jdenticon"
+            ],
+            "time": "2019-11-02T11:39:20+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
