@@ -27,15 +27,11 @@
     </style>
 {% endblock %}
 {% block body %}
-    <header class="Hero">
-        <div class="container welcome">
-            <button id="close" class="btn btn-link Hero-close"><i class="far fa-times-circle"></i></button>
-            <div class="container-middle">
+            <div id="hero" class="col-12 bg-fonce">
+                <button class="btn btn-fonce closeHero"><i class="far fa-times-circle"></i></button>
                 <h2 class="Hero-title">Bienvenue {%  if app.user %}{{  app.user.username }}{% endif %}</h2>
-                    <div class="Hero-subtitle">Forum en developement</div>
+                <div class="Hero-subtitle">Forum en developement</div>
             </div>
-        </div>
-    </header>
 
     <div class="container">
         <div class="row">
@@ -86,10 +82,8 @@
 {% endblock %}
 {% block javascripts %}
 <script>
-    $(function(){
-        $('#close').click(function(){
-            $('.welcome').hide();
-        });
+    $( ".closeHero" ).click(function() {
+        $('div#hero').hide();
     });
 </script>
 {% endblock %}

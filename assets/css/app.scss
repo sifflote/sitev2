@@ -1,5 +1,6 @@
 @import 'bootstrap/bootstrap';
 @import 'libs/base.scss';
+@import 'pages/forum.scss';
 
 /*
     DEMO STYLE
@@ -42,7 +43,6 @@ a:focus {
   background: #3f4750;
   border: none;
   border-radius: 0;
-  margin-bottom: 20px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -80,7 +80,7 @@ span {
 
 }
 #body{
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 
