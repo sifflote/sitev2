@@ -27,16 +27,16 @@
     </style>
 {% endblock %}
 {% block body %}
-            <div id="hero" class="col-12 bg-fonce">
+            <div id="hero" class="col-12 bg-fonce heroheader">
                 <button class="btn btn-fonce closeHero"><i class="far fa-times-circle"></i></button>
                 <h2 class="Hero-title">Bienvenue {%  if app.user %}{{  app.user.username }}{% endif %}</h2>
                 <div class="Hero-subtitle">Forum en developement</div>
             </div>
 
-    <div class="container">
+    <div class="container forum-page">
         <div class="row">
-            <div class="menu-left">
-                <ul>
+            <div class="col-md3">
+                <ul class="forum-sidebar">
                     <li class="item-newTopic">
                         <a href="{{ path('forum_new') }}" class="btn-primary btn">Nouveau sujet</a>
                     </li>
@@ -70,11 +70,11 @@
                 </ul>
             </div>
             <!-- Contenu -->
-            <main class="content">
+            <div class="col-md-8">
                 {% for topic in topics %}
                     {% include('forum/_topic.html.twig') %}
                 {% endfor %}
-            </main>
+            </div>
         </div>
 
 

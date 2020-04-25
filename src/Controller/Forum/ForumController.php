@@ -67,9 +67,13 @@ class ForumController extends AbstractController
         $topics = $this->paginator->paginate($this->topicRepository->queryAllForTag($tag));
         //$topics = $this->topicRepository->queryAllForTag($tag);
         $parent = -1;
+        $title = null;
         if($tag) {
             if ($tag->getParent() !== null) {
                 $parent = $tag->getParent()->getId();
+                $title = $tag->getParent()->getName() . ' - ' . $tag->getName();
+            }else{
+                $title = $tag->getName();
             }
         }
 
@@ -77,7 +81,8 @@ class ForumController extends AbstractController
             'tags' => $this->tagRepository->findTree(),
             'topics' => $topics,
             'menu' => 'forum',
-            'parent' => $parent
+            'parent' => $parent,
+            'page_title' => $title
         ]);
     }
 

@@ -1,6 +1,6 @@
-//$fonce: #3f4750;
-$fonce: #485361;
-$clair: #71c1cf;
+//$fonce: #486361;
+$fonce: #48BF83;
+$clair: #FFFFFF;
 $blanc: #FFF8F9;
 
 .btn-clair {
@@ -20,11 +20,22 @@ $blanc: #FFF8F9;
     color: $blanc;
   }
 }
-
+.page-title {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin: auto;
+  color: $fonce;
+}
 .nav-link{
   color: $fonce !important;
   font-weight: 900;
   &:hover{
     color: $blanc !important;
   }
+}
+
+.page-title {
+  margin: 0 auto;
 }
