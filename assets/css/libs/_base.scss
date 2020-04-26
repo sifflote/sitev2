@@ -13,6 +13,7 @@ $blanc: #FFF8F9;
   }
 }
 .btn-fonce {
+  z-index:3;
   color: $clair;
   background-color: $fonce;
   border-color: $fonce;
@@ -20,6 +21,7 @@ $blanc: #FFF8F9;
     color: $blanc;
   }
 }
+
 .page-title {
   position: absolute;
   width: 100%;
@@ -38,4 +40,28 @@ $blanc: #FFF8F9;
 
 .page-title {
   margin: 0 auto;
+}
+
+// TAGS
+.TagLabel {
+  font-size: 60%;
+  font-weight: 600;
+  display: inline-block;
+  padding: .1em .5em;
+  border-radius: 4px;
+  background: #e7edf3;
+  color: #667d99;
+  text-transform: none;
+}
+.TagLabelParent {
+  border-bottom-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  -webkit-border-top-right-radius: 0;
+}
+.TagLabelChildren {
+  border-bottom-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  -webkit-border-top-left-radius: 0;
 }

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Chez Sifflote{% endblock %}</title>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400|Rubik:300,400,500,600&display=swap" rel="stylesheet">
     {% block stylesheets %}
@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li{% if app.request.get('_route') == 'forum' %} class="active"{% endif %}>
-                    <a href="#">
+                    <a href="{{ path('forum')}}">
                         <i class="far fa-comments"></i>
                         Forum
                     </a>
@@ -85,7 +85,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-fonce">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                    <h3 class="page-title">{% if page_title is defined %}{{ page_title }}{% endif %}</h3>
+                    <h3 class="page-title">{{ title }}</h3>
 
                     <button class="btn btn-fonce d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-user-circle"></i>

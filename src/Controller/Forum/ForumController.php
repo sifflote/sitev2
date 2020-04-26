@@ -67,14 +67,18 @@ class ForumController extends AbstractController
         $topics = $this->paginator->paginate($this->topicRepository->queryAllForTag($tag));
         //$topics = $this->topicRepository->queryAllForTag($tag);
         $parent = -1;
-        $title = null;
+        $tag_title = null;
+        $header_color1 = null;
+        $header_color2 = null;
         if($tag) {
             if ($tag->getParent() !== null) {
                 $parent = $tag->getParent()->getId();
-                $title = $tag->getParent()->getName() . ' - ' . $tag->getName();
+                $tag_title = $tag->getParent()->getName() . ' - ' . $tag->getName();
             }else{
-                $title = $tag->getName();
+                $tag_title = $tag->getName();
             }
+            $header_color1 = $tag->getColor();
+            $header_color2 = $tag->getColor2();
         }
 
         return $this->render('forum/index.html.twig', [
@@ -82,7 +86,11 @@ class ForumController extends AbstractController
             'topics' => $topics,
             'menu' => 'forum',
             'parent' => $parent,
-            'page_title' => $title
+            'page_title' => $tag_title,
+            'header_color1' => $header_color1,
+            'header_color2' => $header_color2,
+            'title' => 'Forum',
+            'tag_page' => $tag
         ]);
     }
 

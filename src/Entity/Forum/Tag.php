@@ -74,6 +74,11 @@ class Tag
      */
     private $svg;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $color2;
+
     public function __construct()
     {
         $this->topics = new ArrayCollection();
@@ -264,6 +269,18 @@ class Tag
     public function setSvg(bool $svg): self
     {
         $this->svg = $svg;
+
+        return $this;
+    }
+
+    public function getColor2(): ?string
+    {
+        return $this->color2;
+    }
+
+    public function setColor2(string $color2): self
+    {
+        $this->color2 = $color2;
 
         return $this;
     }

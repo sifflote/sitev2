@@ -4,39 +4,45 @@
 {% block stylesheets %}
         {{ parent() }}
     <style>
-        {% for tag in tags %}
-        .a-color-tag-{{ tag.id }}>a:hover{
-            color: {{ tag.color }};
-            font-weight: bold;
+    {% for tag in tags %}
+    .tag-color-{{ tag.id }}:hover{
+        color: {{ tag.color }};
+        font-weight: bold;
+    }
+    .tag-color-{{ tag.id }}-actif{
+        color: {{ tag.color }};
+        font-weight: bold;
+    }
+    {% for t in tag.children %}
+    .t-color-{{ t.id }}:hover{
+        color: {{ t.color }};
+        font-weight: bold;
+    }
+    .t-color-{{ t.id }}-actif{
+        color: {{ t.color }};
+        font-weight: bold;
+    }
+    .t-color-{{ t.id }}-actif::before{
+        content: '>';
+    }
+    {% endfor %}
+    {% endfor %}
+        .header-color{
+            color: {{ header_color2 }};
+            background: {{ header_color1 }};
         }
-        .text-color-tag-{{ tag.id }}>a{
-            color: {{ tag.color }};
-        !important;
-        }
-        {%  for t in tag.children %}
-        .text-color-tag-{{ t.id }}>a:hover{
-            font-weight: bold;
-            color: {{ t.color }}
-        }
-        .text-color-tag-{{ t.id }}>a{
-            color: {{ t.color }};
-            !important;
-        }
-        {% endfor %}
-        {% endfor %}
     </style>
 {% endblock %}
 {% block body %}
-            <div id="hero" class="col-12 bg-fonce heroheader">
-                <button class="btn btn-fonce closeHero"><i class="far fa-times-circle"></i></button>
-                <h2 class="Hero-title">Bienvenue {%  if app.user %}{{  app.user.username }}{% endif %}</h2>
+            <div class="col-12 header-color">
+                <h2 class="Hero-title">{% if tag_page is not null %}{{ tag_page.name }}{% else %}Bienvenue {%  if app.user %}{{  app.user.username }}{% endif %}{% endif %}</h2>
                 <div class="Hero-subtitle">Forum en developement</div>
             </div>
 
-    <div class="container forum-page">
+    <div class="container-fluid forum-page">
         <div class="row">
-            <div class="col-md3">
-                <ul class="forum-sidebar">
+            <div class="col forum-sidebar">
+                <ul>
                     <li class="item-newTopic">
                         <a href="{{ path('forum_new') }}" class="btn-primary btn">Nouveau sujet</a>
                     </li>
@@ -52,13 +58,13 @@
                     </li>
                     {% for tag in tags %}
                         <li class="tags item-tags a-color-tag-{{ tag.id }}{% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) %} active text-color-tag-{{ tag.id}}{% endif %}">
-                            <a href="{{ path('forum_tag', {'slug':tag.slug, 'id':tag.id}) }}" class="{% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) %}text-color-tag-{{ tag.id }}{% else %}color-tag-{{ tag.id }}{% endif %}">{% if tag.svg == 1 %}<svg fill="{{ tag.color }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" class="svg"><path d="{{ tag.icon }}"/></svg>{% else %}<span style="color:{{ tag.color }};"><i class="{{ tag.icon }}"></i></span>&nbsp;{% endif %}{{ tag.name }}
+                            <a href="{{ path('forum_tag', {'slug':tag.slug, 'id':tag.id}) }}" class="{% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) %}tag-color-{{ tag.id }}-actif{% else %}tag-color-{{ tag.id }}{% endif %}">{% if tag.svg == 1 %}<svg fill="{{ tag.color }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" class="svg"><path d="{{ tag.icon }}"/></svg>{% else %}<span style="color:{{ tag.color }};"><i class="{{ tag.icon }}"></i></span>&nbsp;{% endif %}{{ tag.name }}
                             </a>
-                            {% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) or parent == tag.id%}
-                            <ul class="no-ul">
+                            {% if app.request.pathInfo == path('forum_tag', {'slug':tag.slug, 'id':tag.id}) or parent == tag.id %}
+                            <ul class="tag-children">
                                 {% for t in tag.children %}
-                                    <li class="tags item-tags text-color-tag-{{ t.id }}{% if app.request.pathInfo == path('forum_tag', {'slug':t.slug, 'id':t.id}) %} active{% endif %}">
-                                        <a href="{{ path('forum_tag', {'slug':t.slug, 'id':t.id}) }}">
+                                    <li class="tags item-tags">
+                                        <a href="{{ path('forum_tag', {'slug':t.slug, 'id':t.id}) }}" class="t-color-{{ t.id }}{% if app.request.pathInfo == path('forum_tag', {'slug':t.slug, 'id':t.id}) %} t-color-{{ t.id }}-actif{% endif %}">
                                             {{ t.name }}
                                         </a>
                                     </li>
@@ -70,7 +76,7 @@
                 </ul>
             </div>
             <!-- Contenu -->
-            <div class="col-md-8">
+            <div class="col">
                 {% for topic in topics %}
                     {% include('forum/_topic.html.twig') %}
                 {% endfor %}
