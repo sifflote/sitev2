@@ -27,9 +27,10 @@ class UserType extends AbstractType
                 'first_options'  => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Retaper le mot de passe'),
             ))
+            /*
             ->add('remember_me', CheckboxType::class, array(
                 'label' => 'Se souvenir'
-            ))
+            ))*/
         ;
     }
 

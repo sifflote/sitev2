@@ -17,5 +17,10 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "2": "^3.0.0",
+        "select": "^1.1.2",
+        "select2": "^4.0.13"
     }
 }

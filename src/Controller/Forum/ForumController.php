@@ -6,10 +6,11 @@ namespace App\Controller\Forum;
 use App\Controller\Helper\Paginator\PaginatorInterface;
 use App\Entity\Forum\Tag;
 use App\Entity\Forum\Topic;
+use App\Form\Forum\ForumTopicForm;
 use App\Repository\Forum\TagRepository;
 use App\Repository\Forum\TopicRepository;
 use Exception;
-
+use App\Controller\Forum\TopicService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,13 +45,15 @@ class ForumController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function create(Request $request): Response
+    public function create(Request $request,TopicService $service): Response
     {
         $topic = (new Topic())->setContent($this->renderView('forum/template/placeholder.text.twig'));
         $form = $this->createForm(ForumTopicForm::class, $topic);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd('ok');
+            $service->createTopic($topic);
+            $this->addFlash('success', 'Le sujet a bien été créé');
+            return $this->redirectToRoute('forum');
         }
         return $this->render('forum/new.html.twig', [
             'form' => $form->createView()

@@ -9,11 +9,22 @@
 import '../css/app.scss';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+//import $ from 'jquery'
 const $ = require('jquery');
+//import 'select2'
+require('select2')
+
+
+
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
+
+//select2
+$(".select2-enable").select2({
+    placeholder: 'Veuillez sélectionner'
+});
+
 
 
 $("#menu-toggle").click(function(e) {

@@ -23,13 +23,17 @@ $blanc: #FFF8F9;
 }
 
 .page-title {
+  z-index: 0;
   position: absolute;
   width: 100%;
   left: 0;
   text-align: center;
   margin: auto;
   color: $fonce;
+  margin: 0 auto;
+  top: 14px;
 }
+
 .nav-link{
   color: $fonce !important;
   font-weight: 900;
@@ -37,9 +41,8 @@ $blanc: #FFF8F9;
     color: $blanc !important;
   }
 }
-
-.page-title {
-  margin: 0 auto;
+.important{
+  z-index: 6;
 }
 
 // TAGS
